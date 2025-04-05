@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HabitAfrik - Votre partenaire immobilier</title>
+    <!-- Favicon -->
+    <link rel="icon" href="images/logo_habit.png" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa; /* Fond uni pour le reste de la page */
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand img {
+            vertical-align: middle;
+        }
+
+        /* Section principale */
+        .main-section {
+            padding: 50px 0;
+        }
+        .main-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .main-section p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .main-section .btn-primary {
+            background: #007bff;
+            border: none;
+        }
+        .main-section .btn-outline-light {
+            color: #007bff;
+            border-color: #007bff;
+        }
+        .main-section .bi-megaphone {
+            color: #007bff;
+            margin-right: 5px;
+        }
+
+        /* Section avec onglets */
+        .tabs-section {
+            padding: 50px 0;
+        }
+        .tabs-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .tabs-section .badge {
+            background: #007bff;
+            color: #fff;
+            font-size: 0.9rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 30px;
+        }
+        .tab-link {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            color: #666;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .tab-link:hover {
+            color: #9b59b6; /* Violet au survol */
+        }
+        .tab-link:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #9b59b6; /* Ligne violette au survol */
+        }
+        .tab-link.active {
+            color: #9b59b6;
+            font-weight: bold;
+        }
+        .tab-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #9b59b6; /* Ligne violette pour l'onglet actif */
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: flex;
+        }
+        .tab-content h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .tab-content p {
+            color: #666;
+            font-size: 1rem;
+        }
+        .tab-content .highlight {
+            color: #9b59b6;
+            font-weight: bold;
+        }
+        .tab-content .learn-more {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Section Conçu pour les entreprises */
+        .features-section {
+            padding: 50px 0;
+            /* Arrière-plan à rayures uniquement ici */
+            background: #f8f9fa url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"%3E%3Crect x="0" y="0" width="20" height="20" fill="none"/%3E%3Cpath d="M0 10h20M10 0v20" stroke="%23e9ecef" stroke-width="1"/%3E%3C/svg%3E') repeat;
+        }
+        .header-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .header-section p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .btn-characteristics {
+            background: #007bff;
+            color: #fff;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            background: #fff;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .icon-circle.yellow { background: #f1c40f; }
+        .icon-circle.blue { background: #3498db; }
+        .icon-circle.purple { background: #9b59b6; }
+        .icon-circle.pink { background: #e91e63; }
+        .card h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+            font-size: 1rem;
+        }
+        .learn-more {
+            opacity: 0;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover .learn-more {
+            opacity: 1;
+        }
+
+        /* Section Témoignage */
+        .testimonial-section {
+            padding: 50px 0;
+            text-align: center;
+        }
+        .testimonial-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .testimonial-section p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .testimonial-section .badge {
+            background: #9b59b6;
+            color: #fff;
+            font-size: 0.9rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        .testimonial-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-top: 30px;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '“';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            color: #9b59b6;
+        }
+        .testimonial-card p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .testimonial-card .client-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .testimonial-card .client-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .testimonial-card .client-info div {
+            text-align: left;
+        }
+        .testimonial-card .client-info h5 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        .testimonial-card .client-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #f8f9fa;
+            padding: 50px 0;
+            border-top: 1px solid #e9ecef;
+        }
+        footer h5 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        footer ul li {
+            margin-bottom: 10px;
+        }
+        footer ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        footer ul li a:hover {
+            color: #007bff;
+        }
+        footer .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        footer .social-icons a {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        footer .social-icons a:hover {
+            color: #007bff;
+        }
+        footer .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 80px;
+            width: 40px;
+            height: 40px;
+            background: #9b59b6;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        /* Indicateur de progression */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 255, 0.7);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="images/logo_habit.png" alt="Logo de HabitAfrik" height="30"> HabitAfrik
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Menu déroulant -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nos services</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Achat & Vente</a></li>
+                            <li><a class="dropdown-item" href="#">Construction</a></li>
+                        </ul>
+                    </li>
+                    <!-- Autres onglets -->
+                    <li class="nav-item"><a class="nav-link" href="#">Projets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Terrains</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Expertise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+                <a class="btn btn-outline-primary ms-3" href="#">Se connecter</a>
+                <a class="btn btn-primary ms-2" href="#">Créer un compte</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section principale -->
+    <section class="main-section container py-5 text-center">
+        <div class="row">
+            <div class="col-lg-6">
+                <span class="badge bg-primary text-white p-2">IMMOBILIER</span>
+                <h2 class="fw-bold mt-3">HabitAfrik : Réalisez vos rêves immobiliers, du terrain à la maison de vos rêves</h2>
+                <p class="mt-3">HabitAfrik vous accompagne dans l'achat, la vente, la construction et l'expertise immobilière. Que vous cherchiez un bien haut de gamme ou à petit prix, nous avons la solution adaptée à vos besoins.</p>
+                <p>
+                    <a href="#" class="btn btn-primary mt-3">Découvrir nos services</a>
+                    <a href="#" class="btn btn-outline-light mt-3">Prendre rendez-vous</a>
+                </p>
+                <p>
+                    <i class="bi bi-megaphone"></i>
+                    <span>Satisfaction garantie à 100%</span>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <img src="images/image.png" alt="Illustration de maison de luxe">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section avec onglets -->
+    <section class="tabs-section container py-5">
+        <div class="text-center">
+            <span class="badge">Immobilier</span>
+            <h2 class="mt-3">HabitAfrik : Votre partenaire pour tous vos projets immobiliers</h2>
+        </div>
+
+        <!-- Onglets -->
+        <div class="tabs mt-5">
+            <a href="#achat-vente" class="tab-link active" data-tab="achat-vente">Achat & Vente</a>
+            <a href="#construction" class="tab-link" data-tab="construction">Construction sur mesure</a>
+            <a href="#lotissement" class="tab-link" data-tab="lotissement">Lotissement</a>
+            <a href="#expertise" class="tab-link" data-tab="expertise">Expertise immobilière</a>
+            <a href="#terrains" class="tab-link" data-tab="terrains">Terrains</a>
+        </div>
+
+        <!-- Contenu des onglets -->
+        <div class="row">
+            <!-- Achat & Vente -->
+            <div id="achat-vente" class="tab-content active row align-items-center">
+                <div class="col-lg-6">
+                    <h3>Achetez ou vendez votre bien immobilier en toute sérénité</h3>
+                    <p>Que vous cherchiez une villa de luxe ou un appartement à petit prix, HabitAfrik vous propose une large sélection de biens immobiliers adaptés à tous les budgets.</p>
+                    <p class="highlight">🏡 Large choix de biens</p>
+                    <p>Nous avons des options pour tous les goûts, des villas modernes aux appartements abordables.</p>
+                    <p class="highlight">🤝 Accompagnement personnalisé</p>
+                    <p>Nos experts vous guident à chaque étape pour une transaction fluide et sécurisée.</p>
+                    <a href="#" class="learn-more">En savoir plus →</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="images/image.png" alt="Illustration d'une villa de luxe" class="img-fluid rounded shadow">
+                </div>
+            </div>
+
+            <!-- Construction sur mesure -->
+            <div id="construction" class="tab-content row align-items-center">
+                <div class="col-lg-6">
+                    <h3>Construisez la maison de vos rêves selon vos goûts</h3>
+                    <p>Avec HabitAfrik, achetez un terrain et laissez-nous construire une maison qui correspond à vos envies, avec des modalités de paiement adaptées à votre budget.</p>
+                    <p class="highlight">🏗️ Construction personnalisée</p>
+                    <p>Nous concevons votre maison selon vos goûts et vos besoins spécifiques.</p>
+                    <p class="highlight">💸 Paiement flexible</p>
+                    <p>Des options de financement adaptées pour concrétiser votre projet sans stress.</p>
+                    <a href="#" class="learn-more">En savoir plus →</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="images/construction.jpg" alt="Illustration d'une maison en construction" class="img-fluid rounded shadow">
+                </div>
+            </div>
+
+            <!-- Lotissement -->
+            <div id="lotissement" class="tab-content row align-items-center">
+                <div class="col-lg-6">
+                    <h3>Investissez dans des lotissements de qualité</h3>
+                    <p>HabitAfrik propose des projets de lotissement bien situés, parfaits pour les investisseurs ou ceux qui souhaitent construire leur propre maison.</p>
+                    <p class="highlight">🌍 Emplacements stratégiques</p>
+                    <p>Nos lotissements sont situés dans des zones à fort potentiel de développement.</p>
+                    <p class="highlight">📜 Projets sécurisés</p>
+                    <p>Tous nos projets sont viabilisés et conformes aux normes en vigueur.</p>
+                    <a href="#" class="learn-more">En savoir plus →</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="images/lotissement.jpg" alt="Illustration d'un lotissement" class="img-fluid rounded shadow">
+                </div>
+            </div>
+
+            <!-- Expertise immobilière -->
+            <div id="expertise" class="tab-content row align-items-center">
+                <div class="col-lg-6">
+                    <h3>Faites évaluer votre bien par des experts</h3>
+                    <p>Nos experts immobiliers vous offrent une évaluation précise et professionnelle pour garantir la juste valeur de votre bien, que ce soit pour une vente ou un achat.</p>
+                    <p class="highlight">🔍 Évaluation précise</p>
+                    <p>Une analyse détaillée pour une estimation au plus près du marché.</p>
+                    <p class="highlight">📈 Optimisation de la valeur</p>
+                    <p>Maximisez la valeur de votre bien grâce à nos conseils d’experts.</p>
+                    <a href="#" class="learn-more">En savoir plus →</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="images/expertise_imo.jpg" alt="Illustration d'une expertise immobilière" class="img-fluid rounded shadow">
+                </div>
+            </div>
+
+            <!-- Terrains -->
+            <div id="terrains" class="tab-content row align-items-center">
+                <div class="col-lg-6">
+                    <h3>Trouvez le terrain idéal pour votre projet</h3>
+                    <p>HabitAfrik vous propose une sélection de terrains dans des emplacements stratégiques, parfaits pour construire la maison ou l’investissement de vos rêves.</p>
+                    <p class="highlight">🌄 Terrains bien situés</p>
+                    <p>Des emplacements idéaux pour des projets résidentiels ou commerciaux.</p>
+                    <p class="highlight">📏 Superficies variées</p>
+                    <p>Choisissez parmi une gamme de tailles pour répondre à vos besoins.</p>
+                    <a href="#" class="learn-more">En savoir plus →</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="images/ach_terrain.jpg" alt="Illustration d'un terrain à vendre" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section avec les cartes -->
+    <section class="features-section">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="header-section">
+                <a href="#" class="btn-characteristics">Nos solutions</a>
+                <h1>Des solutions immobilières pour tous les profils</h1>
+                <p>Que vous soyez un particulier, un investisseur ou une famille, HabitAfrik a une solution immobilière adaptée à vos besoins.</p>
+            </div>
+
+            <!-- Cards Section -->
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="icon-circle yellow"></div>
+                        <h3>Particuliers</h3>
+                        <p>Trouvez la maison de vos rêves ou vendez votre bien rapidement avec notre accompagnement personnalisé.</p>
+                        <a href="#" class="learn-more">En savoir plus →</a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="icon-circle blue"></div>
+                        <h3>Investisseurs</h3>
+                        <p>Maximisez vos revenus avec nos projets de lotissement et nos biens immobiliers à fort potentiel.</p>
+                        <a href="#" class="learn-more">En savoir plus →</a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="icon-circle pink"></div>
+                        <h3>Familles</h3>
+                        <p>Construisez un foyer sur mesure pour votre famille, avec des options adaptées à votre budget.</p>
+                        <a href="#" class="learn-more">En savoir plus →</a>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="icon-circle purple"></div>
+                        <h3>Promoteurs</h3>
+                        <p>Collaborez avec nous pour des projets de lotissement ou des constructions à grande échelle.</p>
+                        <a href="#" class="learn-more">En savoir plus →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignage -->
+    <section class="testimonial-section container py-5">
+        <div class="text-center">
+            <span class="badge">Témoignage</span>
+            <h2 class="mt-3">Ce que disent nos clients satisfaits</h2>
+            <p>Découvrez les témoignages de nos clients qui ont réalisé leurs projets immobiliers avec HabitAfrik.</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="testimonial-card">
+                    <p>Grâce à HabitAfrik, j’ai pu acheter un terrain et faire construire une maison qui correspond parfaitement à mes attentes. Leur accompagnement et leurs modalités de paiement m’ont vraiment facilité la vie !</p>
+                    <div class="client-info">
+                        <img src="images/client.png" alt="Photo de Aminata Diop">
+                        <div>
+                            <h5>Yoro BOHUI</h5>
+                            <p>Propriétaire d’une villa à Angré</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Nos services</h5>
+                    <ul>
+                        <li><a href="#">Achat & Vente</a></li>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Lotissement</a></li>
+                        <li><a href="#">Expertise immobilière</a></li>
+                        <li><a href="#">Terrains</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>À propos</h5>
+                    <ul>
+                        <li><a href="#">Notre mission</a></li>
+                        <li><a href="#">Notre équipe</a></li>
+                        <li><a href="#">Nos projets</a></li>
+                        <li><a href="#">Témoignages</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Ressources</h5>
+                    <ul>
+                        <li><a href="#">Guide de l’acheteur</a></li>
+                        <li><a href="#">Guide du vendeur</a></li>
+                        <li><a href="#">Conseils immobiliers</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Emplacements</h5>
+                    <ul>
+                        <li><a href="#">Dakar</a></li>
+                        <li><a href="#">Abidjan</a></li>
+                        <li><a href="#">Lagos</a></li>
+                        <li><a href="#">Accra</a></li>
+                    </ul>
+                    <h5 class="mt-4">Siège social</h5>
+                    <p>HabitAfrik, 123 Avenue de l’Immobilier, Abidjan, Cote d’Ivoire</p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-4">
+                <div class="col-md-6">
+                    <a class="navbar-brand fw-bold" href="#">
+                        <img src="logo.png" alt="Logo de HabitAfrik" height="30"> HabitAfrik
+                    </a>
+                    <p class="text-muted mt-2">Copyright © 2025 HabitAfrik | Tous droits réservés</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-globe"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#top" class="back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </footer>
+
+    <!-- Indicateur de progression -->
+    <div class="scroll-indicator" id="scrollIndicator">0%</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript pour l'indicateur de progression et les onglets -->
+    <script>
+        // Indicateur de progression
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercentage = Math.round((scrollTop / scrollHeight) * 100);
+            document.getElementById('scrollIndicator').textContent = `${scrollPercentage}%`;
+        });
+
+        // Gestion des onglets
+        document.querySelectorAll('.tab-link').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Supprimer la classe active de tous les onglets et contenus
+                document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                // Ajouter la classe active à l'onglet cliqué et au contenu correspondant
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
